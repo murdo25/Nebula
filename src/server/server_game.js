@@ -28,6 +28,10 @@ module.exports = class Game {
 
         for (var b of this.bullets) {
             b.x += 10;
+            b.count++;
+        }
+        if (this.bullets.length > 0 && this.bullets[this.bullets.length - 1].count > 100) {
+            this.bullets.pop();
         }
 
         this.sendUpdates();
@@ -50,11 +54,11 @@ module.exports = class Game {
     }
 
     shoot(name) {
-        if () {
+        // if() {
 
-        }
+        // }
         var p = this.players[name];
 
-        this.bullets.push({ x: p.x, y: p.y, rot: p.rot });
+        this.bullets.push({ x: p.x, y: p.y, rot: p.rot, count: 0 });
     }
 }
