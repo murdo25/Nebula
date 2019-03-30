@@ -35,6 +35,19 @@ function init_game(socket) {
 class Game {
 
     constructor() {
+
+        // this.
+        // ctx.drawImage(heroImage, hero.x, hero.y, 50, 50);
+
+        // Hero image
+        this.heroReady = false;
+        this.heroImage = new Image();
+        this.heroImage.onload = function() {
+            this.heroReady = true;
+        }.bind(this);
+        this.heroImage.src = "images/west_idle_animation_by_hero_in_pixels.gif";
+        this.heroImage.height = "50";
+
         this.canvas = document.getElementById('canvas');
         this.ctx = this.canvas.getContext("2d");
         this.player = new Player({ x: 10, y: 10, h: 10, w: 10, rot: 0 });
@@ -76,15 +89,15 @@ class Game {
 
         for (var b of this.bullets) {
             drawBox(ctx, { x: b.x, y: b.y, h: 2, w: 2 }, "red");
-            console.log("hello")
         }
+
 
         $("body").mousemove(function(e) {
             var rect = canvas.getBoundingClientRect();
             this.mouse_x = e.clientX - rect.left;
             this.mouse_y = e.clientY - rect.top;
-            console.log(this.mouse_x)
-        }).bind();
+            this.player.setRotation(this.mouse_x, this.mouse_y)
+        }.bind(this));
     }
 
 }
