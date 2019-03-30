@@ -30,8 +30,9 @@ module.exports = class Game {
             b.x += 10;
             b.count++;
         }
-        if (this.bullets.length > 0 && this.bullets[this.bullets.length - 1].count > 10) {
-            this.bullets.pop();
+        if (this.bullets.length > 0 && this.bullets[0].count > 50) {
+            this.bullets.shift();
+            // console.log(this.bullets)
         }
 
         this.sendUpdates();
@@ -54,11 +55,14 @@ module.exports = class Game {
     }
 
     shoot(name) {
-        // if() {
-
-        // }
         var p = this.players[name];
 
         this.bullets.push({ x: p.x, y: p.y, rot: p.rot, count: 0 });
+    }
+
+    removeClient(username) {
+        delete this.players[username]
+        delete this.connections[username]
+        console.log(username + " left the game")
     }
 }

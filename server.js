@@ -78,4 +78,8 @@ io.on('connection', function(new_client) {
   new_client.on('shoot', function() {
     game.shoot(username);
   });
+
+  new_client.on('disconnect', function() {
+    game.removeClient(username);
+  });
 });

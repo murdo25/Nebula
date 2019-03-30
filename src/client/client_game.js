@@ -85,14 +85,14 @@ class Game {
 
         for (var i in this.players) {
             var p = this.players[i];
-            drawBox(ctx, p, "blue")
+            // drawBox(ctx, p, "blue")
 
             ctx.drawImage(this.shipImage, p.x, p.y, 50, 50);
 
         }
 
         for (var b of this.bullets) {
-            drawBox(ctx, { x: b.x, y: b.y, h: 2, w: 2 }, "red");
+            drawBox(ctx, { x: b.x + 30, y: b.y + 30, h: 2, w: 2 }, "white");
         }
 
 
@@ -191,7 +191,7 @@ class Player {
             space = 32;
 
         evt.preventDefault();
-        console.log(evt.keyCode)
+        // console.log(evt.keyCode)
         if (evt.keyCode === KEY_LEFT)
             this.left = true;
         if (evt.keyCode === KEY_RIGHT)
