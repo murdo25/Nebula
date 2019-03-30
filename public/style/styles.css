@@ -37,3 +37,122 @@ body, html {
 	padding: 5px;
 	border-style: none;
 }
+
+/* Animation webkit */
+@-webkit-keyframes myfirst
+{
+    0% {margin-left: -235px}
+    90% {margin-left: 100%;}
+    100% {margin-left: 100%;}
+}
+
+/* Animation */
+@keyframes myfirst
+{
+    0% {margin-left: -235px}
+    70% {margin-left: 100%;}
+    100% {margin-left: 100%;}
+}
+
+.greenShip{
+    background-image: url('../../assets/greenShip.svg');
+    width: 160px;
+    height: 103px;
+    margin-top: 300px;
+    margin-left: -235px;
+    position: absolute; 
+    animation: myfirst 24s;
+    -webkit-animation: myfirst 24s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+}
+
+.pinkShip{
+    background-image: url('../../assets/pinkShip.svg');
+    width: 63px;
+    height: 104px;
+    margin-top: 200px;
+    margin-left: -235px;
+    position: absolute; 
+    animation: myfirst 24s;
+    -webkit-animation: myfirst 24s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+}
+
+.orangePlanet{
+    background-image: url('../../assets/orangePlanet.svg');
+    width: 90px;
+    height: 90px;
+    margin-top: 300px;
+    margin-left: -235px;
+    position: absolute; 
+    animation: myfirst 24s;
+    -webkit-animation: myfirst 24s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+}
+
+.greenPlanet{
+    background-image: url('../../assets/greenPlanet.svg');
+    width: 90px;
+    height: 119px;
+    margin-top: 300px;
+    margin-left: -235px;
+    position: absolute; 
+    animation: myfirst 24s;
+    -webkit-animation: myfirst 24s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+}
+
+.blueShip{
+    background-image: url('../../assets/blueShip.svg');
+    width: 85px;
+    height: 80px;
+    margin-top: 250px;
+    margin-left: -235px;
+    position: absolute; 
+    animation: myfirst 24s;
+    -webkit-animation: myfirst 24s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+}
+
+#ship{
+    top: 120px;
+}
+
+#ship2{
+    top: 260px;
+    animation-delay: 7s;
+    -webkit-animation-delay: 7s;
+}
+
+#ship3{
+    top: 260px;
+    animation-delay: 15s;
+    -webkit-animation-delay: 15s;
+}
+
+#planet{
+	top: 260px;
+    animation-delay: 3s;
+    -webkit-animation-delay: 3s;
+}
+
+#planet2{
+	top: 260px;
+    animation-delay: 11s;
+    -webkit-animation-delay: 11s;
+}
