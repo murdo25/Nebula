@@ -46,7 +46,8 @@ class Game {
             this.shipReady = true;
         }.bind(this);
         this.shipImage.src = "assets/greenShip.svg";
-        this.shipImage.height = "50";
+        // this.shipImage.src = "https://farm3.staticflickr.com/2949/15209453240_dbb94dc67a_b.jpg";
+        this.shipImage.height = "auto";
 
         this.canvas = document.getElementById('canvas');
         this.ctx = this.canvas.getContext("2d");
@@ -85,7 +86,11 @@ class Game {
         for (var i in this.players) {
             var p = this.players[i];
             // drawBox(ctx, p, "blue")
-            ctx.drawImage(this.shipImage, this.player.x, this.player.y, 50, 50);
+
+            console.log(this.player.loc.x, this.player.loc.y)
+
+            ctx.drawImage(this.shipImage, this.player.loc.x, this.player.loc.y, 50, 50);
+
         }
 
         for (var b of this.bullets) {
