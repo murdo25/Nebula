@@ -1,66 +1,94 @@
-body, html {
-  height: 100%;
+body,
+html {
+    height: 100%;
+}
+
+#canvas {
+    background-image: url("../assets/background.svg");
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .title {
-	color: #fff;
-	font-size: 50px;
-	padding: 10px;
+    color: #fff;
+    font-size: 50px;
+    padding: 10px;
 }
 
-.bg { 
-  /* The image used */
-  background-image: url("../../assets/background.svg");
+.bg {
+    /* The image used */
+    background-image: url("../../assets/background.svg");
 
-  /* Full height */
-  height: 100%; 
+    /* Full height */
+    height: 100%;
 
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .username {
-	margin: 100px;
-	padding: 10px;
-	border: 3px solid #fff;
-	border-radius: 25px;
-	text-align: center;
+    margin: 100px;
+    padding: 10px;
+    border: 3px solid #fff;
+    border-radius: 25px;
+    text-align: center;
 }
 
 #form {
-	padding: 20px;
+    padding: 20px;
 }
 
 #username {
-	padding: 5px;
-	border-style: none;
+    padding: 5px;
+    border-style: none;
 }
 
 /* Animation webkit */
-@-webkit-keyframes myfirst
-{
-    0% {margin-left: -235px}
-    90% {margin-left: 100%;}
-    100% {margin-left: 100%;}
+
+@-webkit-keyframes myfirst {
+    0% {
+        margin-left: -235px
+    }
+    90% {
+        margin-left: 100%;
+    }
+    100% {
+        margin-left: 100%;
+    }
 }
 
 /* Animation */
-@keyframes myfirst
-{
-    0% {margin-left: -235px}
-    70% {margin-left: 100%;}
-    100% {margin-left: 100%;}
+
+@keyframes myfirst {
+    0% {
+        margin-left: -235px
+    }
+    70% {
+        margin-left: 100%;
+    }
+    100% {
+        margin-left: 100%;
+    }
 }
 
-.greenShip{
+.greenShip {
     background-image: url('../../assets/greenShip.svg');
     width: 160px;
     height: 103px;
     margin-top: 300px;
     margin-left: -235px;
-    position: absolute; 
+    position: absolute;
     animation: myfirst 24s;
     -webkit-animation: myfirst 24s;
     animation-iteration-count: infinite;
@@ -69,13 +97,13 @@ body, html {
     -webkit-animation-timing-function: linear;
 }
 
-.pinkShip{
+.pinkShip {
     background-image: url('../../assets/pinkShip.svg');
     width: 63px;
     height: 104px;
     margin-top: 200px;
     margin-left: -235px;
-    position: absolute; 
+    position: absolute;
     animation: myfirst 24s;
     -webkit-animation: myfirst 24s;
     animation-iteration-count: infinite;
@@ -84,13 +112,13 @@ body, html {
     -webkit-animation-timing-function: linear;
 }
 
-.orangePlanet{
+.orangePlanet {
     background-image: url('../../assets/orangePlanet.svg');
     width: 90px;
     height: 90px;
     margin-top: 300px;
     margin-left: -235px;
-    position: absolute; 
+    position: absolute;
     animation: myfirst 24s;
     -webkit-animation: myfirst 24s;
     animation-iteration-count: infinite;
@@ -99,13 +127,13 @@ body, html {
     -webkit-animation-timing-function: linear;
 }
 
-.greenPlanet{
+.greenPlanet {
     background-image: url('../../assets/greenPlanet.svg');
     width: 89px;
     height: 118px;
     margin-top: 300px;
     margin-left: -235px;
-    position: absolute; 
+    position: absolute;
     animation: myfirst 24s;
     -webkit-animation: myfirst 24s;
     animation-iteration-count: infinite;
@@ -114,13 +142,13 @@ body, html {
     -webkit-animation-timing-function: linear;
 }
 
-.blueShip{
+.blueShip {
     background-image: url('../../assets/blueShip.svg');
     width: 85px;
     height: 80px;
     margin-top: 250px;
     margin-left: -235px;
-    position: absolute; 
+    position: absolute;
     animation: myfirst 24s;
     -webkit-animation: myfirst 24s;
     animation-iteration-count: infinite;
@@ -129,13 +157,13 @@ body, html {
     -webkit-animation-timing-function: linear;
 }
 
-.purplePlanet{
+.purplePlanet {
     background-image: url('../../assets/purplePlanet.svg');
     width: 89px;
     height: 89px;
     margin-top: 300px;
     margin-left: -235px;
-    position: absolute; 
+    position: absolute;
     animation: myfirst 24s;
     -webkit-animation: myfirst 24s;
     animation-iteration-count: infinite;
@@ -144,36 +172,36 @@ body, html {
     -webkit-animation-timing-function: linear;
 }
 
-#ship{
+#ship {
     top: 120px;
 }
 
-#ship2{
+#ship2 {
     top: 260px;
     animation-delay: 7s;
     -webkit-animation-delay: 7s;
 }
 
-#ship3{
+#ship3 {
     top: 260px;
     animation-delay: 15s;
     -webkit-animation-delay: 15s;
 }
 
-#planet{
-	top: 260px;
+#planet {
+    top: 260px;
     animation-delay: 3s;
     -webkit-animation-delay: 3s;
 }
 
-#planet2{
-	top: 260px;
+#planet2 {
+    top: 260px;
     animation-delay: 11s;
     -webkit-animation-delay: 11s;
 }
 
-#planet3{
-	top: 260px;
+#planet3 {
+    top: 260px;
     animation-delay: 19s;
     -webkit-animation-delay: 19s;
 }

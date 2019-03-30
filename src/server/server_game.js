@@ -30,7 +30,7 @@ module.exports = class Game {
             b.x += 10;
             b.count++;
         }
-        if (this.bullets.length > 0 && this.bullets[this.bullets.length - 1].count > 100) {
+        if (this.bullets.length > 0 && this.bullets[this.bullets.length - 1].count > 10) {
             this.bullets.pop();
         }
 

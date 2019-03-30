@@ -85,11 +85,9 @@ class Game {
 
         for (var i in this.players) {
             var p = this.players[i];
-            // drawBox(ctx, p, "blue")
+            drawBox(ctx, p, "blue")
 
-            console.log(this.player.loc.x, this.player.loc.y)
-
-            ctx.drawImage(this.shipImage, this.player.loc.x, this.player.loc.y, 50, 50);
+            ctx.drawImage(this.shipImage, p.x, p.y, 50, 50);
 
         }
 
