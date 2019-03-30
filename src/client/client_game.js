@@ -36,17 +36,17 @@ class Game {
 
     constructor() {
 
-        // this.
-        // ctx.drawImage(heroImage, hero.x, hero.y, 50, 50);
 
-        // Hero image
-        this.heroReady = false;
-        this.heroImage = new Image();
-        this.heroImage.onload = function() {
-            this.heroReady = true;
+        // ctx.drawImage(shipImage, ship.x, ship.y, 50, 50);
+
+        // ship image
+        this.shipReady = false;
+        this.shipImage = new Image();
+        this.shipImage.onload = function() {
+            this.shipReady = true;
         }.bind(this);
-        this.heroImage.src = "images/west_idle_animation_by_hero_in_pixels.gif";
-        this.heroImage.height = "50";
+        this.shipImage.src = "assets/greenShip.svg";
+        this.shipImage.height = "50";
 
         this.canvas = document.getElementById('canvas');
         this.ctx = this.canvas.getContext("2d");
@@ -84,7 +84,8 @@ class Game {
 
         for (var i in this.players) {
             var p = this.players[i];
-            drawBox(ctx, p, "blue")
+            // drawBox(ctx, p, "blue")
+            ctx.drawImage(this.shipImage, this.player.x, this.player.y, 50, 50);
         }
 
         for (var b of this.bullets) {
