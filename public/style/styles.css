@@ -1,0 +1,39 @@
+body, html {
+  height: 100%;
+}
+
+.title {
+	color: #fff;
+	font-size: 50px;
+	padding: 10px;
+}
+
+.bg { 
+  /* The image used */
+  background-image: url("../../assets/background.svg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.username {
+	margin: 100px;
+	padding: 10px;
+	border: 3px solid #fff;
+	border-radius: 25px;
+	text-align: center;
+}
+
+#form {
+	padding: 20px;
+}
+
+#username {
+	padding: 5px;
+	border-style: none;
+}

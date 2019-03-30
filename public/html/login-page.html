@@ -4,24 +4,26 @@
 <head>
     <meta charset="utf-8">
     <title>Nebula</title>
+    <link rel="stylesheet" type="text/css" href="../style/styles.css"/>
     <!--<link rel="stylesheet" href="/css/master.css">-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/javascript/game-lobby.js"></script>
     <!--<script src="/jquery/dist/jquery.min.js"></script>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
-<body>
-
-    <form class="login" id="login-form">
-        <h3>Enter Username</h3>
-        <input type="text" name="username" value="" required="required" id="username">
-        <button type="submit" name="submit_button">Submit</button>
-    </form>
-
-    <div class="">
-        <h1>There's still space for you!</h1>
-
+<body class="bg">
+    <div class="container username">
+        <form class="login" id="login-form">
+            <h3 class="title">Enter Username</h3>
+            <div id="form">
+                <input type="text" name="username" value="" required="required" id="username">
+                <button class="btn" type="submit" name="submit_button">Submit</button>
+            </div>
+        </form>
     </div>
 </body>
 
