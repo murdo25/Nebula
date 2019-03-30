@@ -101,8 +101,8 @@ body, html {
 
 .greenPlanet{
     background-image: url('../../assets/greenPlanet.svg');
-    width: 90px;
-    height: 119px;
+    width: 89px;
+    height: 118px;
     margin-top: 300px;
     margin-left: -235px;
     position: absolute; 
@@ -119,6 +119,21 @@ body, html {
     width: 85px;
     height: 80px;
     margin-top: 250px;
+    margin-left: -235px;
+    position: absolute; 
+    animation: myfirst 24s;
+    -webkit-animation: myfirst 24s;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+}
+
+.purplePlanet{
+    background-image: url('../../assets/purplePlanet.svg');
+    width: 89px;
+    height: 89px;
+    margin-top: 300px;
     margin-left: -235px;
     position: absolute; 
     animation: myfirst 24s;
@@ -155,4 +170,10 @@ body, html {
 	top: 260px;
     animation-delay: 11s;
     -webkit-animation-delay: 11s;
+}
+
+#planet3{
+	top: 260px;
+    animation-delay: 19s;
+    -webkit-animation-delay: 19s;
 }
