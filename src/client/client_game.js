@@ -49,9 +49,20 @@ class Game {
         // this.shipImage.src = "https://farm3.staticflickr.com/2949/15209453240_dbb94dc67a_b.jpg";
         this.shipImage.height = "auto";
 
+        //swag
+
         this.canvas = document.getElementById('canvas');
         this.ctx = this.canvas.getContext("2d");
-        this.player = new Player({ x: 10, y: 10, h: 10, w: 10, rot: 0 });
+
+
+        let x_start = Math.floor(Math.random() * 500);
+        let y_start = Math.floor(Math.random() * 500);
+
+        console.log("x", x_start, "y", y_start)
+
+        this.player_name = sessionStorage.getItem("username");
+
+        this.player = new Player({ x: x_start, y: y_start, h: 10, w: 10, rot: 0, health: 100 });
         this.player.init_controller();
         this.players = [];
         this.bullets = [];
@@ -64,6 +75,13 @@ class Game {
         socket.on('players', function(info) {
             this.players = info.players;
             this.bullets = info.bullets;
+            if (this.player_name in this.players)
+                this.player.loc.health = this.players[this.player_name].health;
+        }.bind(this));
+
+        socket.on('died', function(info) {
+            alert("You died!")
+            location.reload();
         }.bind(this));
     }
 
@@ -83,16 +101,18 @@ class Game {
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         this.player.Render(ctx);
 
-        for (var i in this.players) {
-            var p = this.players[i];
+        for (var name in this.players) {
+            var p = this.players[name];
             // drawBox(ctx, p, "blue")
 
-            ctx.drawImage(this.shipImage, p.x, p.y, 50, 50);
+            ctx.drawImage(this.shipImage, p.x, p.y, 100, 50);
+            ctx.font = "30px Verdana";
+            ctx.fillText(name, p.x, p.y, 100);
 
         }
 
         for (var b of this.bullets) {
-            drawBox(ctx, { x: b.x + 30, y: b.y + 30, h: 2, w: 2 }, "white");
+            drawBox(ctx, { x: b.x + 30, y: b.y + 30, h: 5, w: 5 }, "white");
         }
 
 
@@ -132,17 +152,19 @@ class Player {
 
         this.setRotation();
 
+        var speed = 2;
+
         if (this.left) {
-            this.loc.x--;
+            this.loc.x -= speed;
         }
         if (this.right) {
-            this.loc.x++;
+            this.loc.x += speed;
         }
         if (this.up) {
-            this.loc.y--;
+            this.loc.y -= speed;
         }
         if (this.down) {
-            this.loc.y++;
+            this.loc.y += speed;
         }
 
     }

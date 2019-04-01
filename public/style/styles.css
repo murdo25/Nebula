@@ -3,6 +3,14 @@ html {
     height: 100%;
 }
 
+.welcome {
+    color: #fff;
+    font-size: 75px;
+    text-align: center;
+    padding: 30px;
+    margin-top: 20px;
+}
+
 #canvas {
     background-image: url("../assets/background.svg");
 
@@ -45,6 +53,7 @@ html {
 
 .username {
     margin: 100px;
+    margin-top: 20px;
     padding: 10px;
     border: 3px solid #fff;
     border-radius: 25px;
