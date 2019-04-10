@@ -41,28 +41,29 @@ module.exports = class Game {
         this.delta_time = Date.now() - this.last_update;
         this.last_update = Date.now();
 
+
+
         for (var b of this.bullets) {
-            b.x += b.x_speed;
-            b.y += b.y_speed;
+            b.x += b.x_speed * b.count;
+            b.y += b.y_speed * b.count;
             b.count++;
 
             this.calculateHit(b);
 
-
         }
 
-        if (this.bullets.length > 0 && this.bullets[0].count > 30) {
+        let max_bullet_life = 30;
 
-            try {
-                this.players[this.bullets[this.bullets.length - 1].name].numBullets -= 1;
+        for (var b of this.bullets) {
 
+            if (b.count > max_bullet_life) {
                 this.bullets.shift();
             }
-            catch (error) {
-                console.log(error);
-            }
+
 
         }
+
+
 
 
         this.sendUpdates();
@@ -84,25 +85,24 @@ module.exports = class Game {
         this.players[name] = player;
     }
 
-    shoot(name) {
+    shoot(name, shot_x, shot_y) {
         if (!(name in this.players))
             return;
         var p = this.players[name];
 
-        if (p.numBullets > 10) {
-            return;
-        }
+        // console.log(p.x, p.y, shot_x, shot_y)
 
         var speed = 5;
-        var theta = (p.rot + 90) * (180 / Math.PI);
-        var x_speed = Math.sin(theta) * speed;
-        var y_speed = Math.cos(theta) * speed;
 
+        let x = shot_x - p.x;
+        let y = shot_y - p.y;
 
-        this.bullets.push({ x: p.x, y: p.y, rot: p.rot, count: 0, x_speed, y_speed, name });
-        this.players[name].numBullets += 1;
+        let norm = Math.sqrt((x * x) + (y * y));
 
-        console.log(name, this.players[name].numBullets)
+        let x_speed = (x / norm);
+        let y_speed = (y / norm);
+
+        this.bullets.push({ x: p.x, y: p.y, count: 0, x_speed, y_speed, name });
 
 
     }

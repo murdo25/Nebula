@@ -62,7 +62,7 @@ class Game {
 
         this.player_name = sessionStorage.getItem("username");
 
-        this.player = new Player({ x: x_start, y: y_start, h: 10, w: 10, rot: 0, health: 100, numBullets: 0 });
+        this.player = new Player({ x: x_start, y: y_start, h: 10, w: 10, health: 100, numBullets: 0 });
         this.player.init_controller();
         this.players = [];
         this.bullets = [];
@@ -91,13 +91,14 @@ class Game {
     Update(socket, delta_time) {
         this.player.Update(delta_time);
 
-        console.log(this.player.loc.rot)
+        // console.log(this.player.loc.rot)
 
         socket.emit("move", this.player.loc);
 
         if (this.player.shoot) {
+            console.log(this.player.loc.x, this.player.loc.y, this.mouse_x, this.mouse_y);
+            socket.emit("shoot", this.mouse_x, this.mouse_y);
 
-            socket.emit("shoot");
         }
 
     }
@@ -127,7 +128,7 @@ class Game {
             var rect = canvas.getBoundingClientRect();
             this.mouse_x = e.clientX - rect.left;
             this.mouse_y = e.clientY - rect.top;
-            this.player.setRotation(this.mouse_x, this.mouse_y)
+            // this.player.setRotation(this.mouse_x, this.mouse_y)
         }.bind(this));
     }
 
@@ -157,7 +158,7 @@ class Player {
 
     Update(delta_time) {
 
-        this.setRotation();
+        // this.setRotation();
 
         var speed = 2;
 
@@ -176,42 +177,42 @@ class Player {
 
     }
 
-    setRotation2(mouse_x, mouse_y) {
-        let slope = (mouse_y - this.loc.y) / (mouse_x - this.loc.x);
+    // setRotation2(mouse_x, mouse_y) {
+    //     let slope = (mouse_y - this.loc.y) / (mouse_x - this.loc.x);
 
-        console.log(Math.atan2(slope))
+    //     console.log(Math.atan2(slope))
 
-        this.loc.rot = Math.atan2(slope)
+    //     this.loc.rot = Math.atan2(slope)
 
 
 
-    }
+    // }
 
-    setRotation(mouse_x, mouse_y) {
+    // setRotation(mouse_x, mouse_y) {
 
-        let adjacent = mouse_x - this.loc.x;
-        let opposite = mouse_y - this.loc.y;
+    //     let adjacent = mouse_x - this.loc.x;
+    //     let opposite = mouse_y - this.loc.y;
 
-        let rad2deg = 180 / Math.PI;
-        if (adjacent === 0) {
-            return;
-        }
-        else if (adjacent > 0 && opposite < 0) { //First Quadrant
-            let rot = Math.atan(-opposite / -adjacent) * rad2deg;
-            this.loc.rot = rot + 360;
-        }
-        else if (adjacent > 0 && opposite > 0) { //Second Quadrant
-            this.loc.rot = Math.atan(opposite / adjacent) * rad2deg;
-        }
-        else if (adjacent < 0 && opposite > 0) { //Third Quadrant
-            let rot = Math.atan(opposite / adjacent) * rad2deg;
-            this.loc.rot = rot + 180;
-        }
-        else if (adjacent < 0 && opposite < 0) { //Fourth Quadrant
-            let rot = Math.atan(opposite / adjacent) * rad2deg;
-            this.loc.rot = rot + 180;
-        }
-    }
+    //     let rad2deg = 180 / Math.PI;
+    //     if (adjacent === 0) {
+    //         return;
+    //     }
+    //     else if (adjacent > 0 && opposite < 0) { //First Quadrant
+    //         let rot = Math.atan(-opposite / -adjacent) * rad2deg;
+    //         this.loc.rot = rot + 360;
+    //     }
+    //     else if (adjacent > 0 && opposite > 0) { //Second Quadrant
+    //         this.loc.rot = Math.atan(opposite / adjacent) * rad2deg;
+    //     }
+    //     else if (adjacent < 0 && opposite > 0) { //Third Quadrant
+    //         let rot = Math.atan(opposite / adjacent) * rad2deg;
+    //         this.loc.rot = rot + 180;
+    //     }
+    //     else if (adjacent < 0 && opposite < 0) { //Fourth Quadrant
+    //         let rot = Math.atan(opposite / adjacent) * rad2deg;
+    //         this.loc.rot = rot + 180;
+    //     }
+    // }
 
     Render(ctx, delta_time) {
         // drawBox(ctx, this.loc, "blue");
@@ -251,7 +252,7 @@ class Player {
             this.down = true;
         if (evt.keyCode === space) {
             this.shoot = true;
-            console.log("shot fired")
+            // console.log("shot fired")
         }
     }
 
