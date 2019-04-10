@@ -5,7 +5,7 @@ module.exports = class Game {
         this.fps = 45;
         this.players = {};
         this.connections = connections;
-        this.bullets = []
+        this.bullets = [];
     }
 
     start() {
@@ -22,6 +22,21 @@ module.exports = class Game {
         return this.running;
     }
 
+    calculateHit(b) {
+        for (var name in this.players) {
+            var p = this.players[name];
+            if (name != b.name && b.hit != true && Math.abs(p.x - b.x) <= 9 && Math.abs(p.y - b.y) <= 9) {
+
+                p.health -= 10;
+                b.hit = true;
+                if (p.health <= 0 && name in this.connections) {
+                    this.connections[name].emit("died");
+                    this.removeClient(name);
+                }
+            }
+        }
+    }
+
     updateState() {
         this.delta_time = Date.now() - this.last_update;
         this.last_update = Date.now();
@@ -31,23 +46,24 @@ module.exports = class Game {
             b.y += b.y_speed;
             b.count++;
 
-            for (var name in this.players) {
-                var p = this.players[name]
-                if (name != b.name && b.hit != true && Math.abs(p.x - b.x) <= 9 && Math.abs(p.y - b.y) <= 9) {
+            this.calculateHit(b);
 
-                    p.health -= 10;
-                    b.hit = true;
-                    if (p.health <= 0 && name in this.connections) {
-                        this.connections[name].emit("died");
-                        this.removeClient(name);
-                    }
-                }
+
+        }
+
+        if (this.bullets.length > 0 && this.bullets[0].count > 30) {
+
+            try {
+                this.players[this.bullets[this.bullets.length - 1].name].numBullets -= 1;
+
+                this.bullets.shift();
             }
+            catch (error) {
+                console.log(error);
+            }
+
         }
-        if (this.bullets.length > 0 && this.bullets[0].count > 50) {
-            this.bullets.shift();
-            // console.log(this.bullets)
-        }
+
 
         this.sendUpdates();
     }
@@ -73,18 +89,22 @@ module.exports = class Game {
             return;
         var p = this.players[name];
 
-        // if (p.bullets.length > 10) {
-            //     return;
-            // }
+        if (p.numBullets > 10) {
+            return;
+        }
 
         var speed = 5;
         var theta = (p.rot + 90) * (180 / Math.PI);
         var x_speed = Math.sin(theta) * speed;
         var y_speed = Math.cos(theta) * speed;
 
-        // console.log(x_speed)
 
         this.bullets.push({ x: p.x, y: p.y, rot: p.rot, count: 0, x_speed, y_speed, name });
+        this.players[name].numBullets += 1;
+
+        console.log(name, this.players[name].numBullets)
+
+
     }
 
     removeClient(username) {

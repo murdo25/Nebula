@@ -62,10 +62,11 @@ class Game {
 
         this.player_name = sessionStorage.getItem("username");
 
-        this.player = new Player({ x: x_start, y: y_start, h: 10, w: 10, rot: 0, health: 100 });
+        this.player = new Player({ x: x_start, y: y_start, h: 10, w: 10, rot: 0, health: 100, numBullets: 0 });
         this.player.init_controller();
         this.players = [];
         this.bullets = [];
+
         this.mouse_x = 0;
         this.mouse_y = 0;
 
@@ -75,8 +76,10 @@ class Game {
         socket.on('players', function(info) {
             this.players = info.players;
             this.bullets = info.bullets;
-            if (this.player_name in this.players)
+            if (this.player_name in this.players) {
                 this.player.loc.health = this.players[this.player_name].health;
+                this.player.loc.numBullets = this.players[this.player_name].numBullets;
+            }
         }.bind(this));
 
         socket.on('died', function(info) {
@@ -87,9 +90,13 @@ class Game {
 
     Update(socket, delta_time) {
         this.player.Update(delta_time);
+
+        console.log(this.player.loc.rot)
+
         socket.emit("move", this.player.loc);
 
         if (this.player.shoot) {
+
             socket.emit("shoot");
         }
 
@@ -166,6 +173,17 @@ class Player {
         if (this.down) {
             this.loc.y += speed;
         }
+
+    }
+
+    setRotation2(mouse_x, mouse_y) {
+        let slope = (mouse_y - this.loc.y) / (mouse_x - this.loc.x);
+
+        console.log(Math.atan2(slope))
+
+        this.loc.rot = Math.atan2(slope)
+
+
 
     }
 
