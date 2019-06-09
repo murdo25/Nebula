@@ -25,7 +25,7 @@ module.exports = class Game {
     calculateHit(b) {
         for (var name in this.players) {
             var p = this.players[name];
-            if (name != b.name && b.hit != true && Math.abs(p.x - b.x) <= 9 && Math.abs(p.y - b.y) <= 9) {
+            if (name != b.name && b.hit != true && Math.abs(p.x - b.x) <= 15 && Math.abs(p.y - b.y) <= 15) {
 
                 p.health -= 10;
                 b.hit = true;
@@ -97,10 +97,23 @@ module.exports = class Game {
         let x = shot_x - p.x;
         let y = shot_y - p.y;
 
-        let norm = Math.sqrt((x * x) + (y * y));
+        let slope = (y / x);
 
-        let x_speed = (x / norm);
-        let y_speed = (y / norm);
+
+        let x_speed = 1;
+        let y_speed = slope;
+
+        if (shot_x < p.x) {
+            y_speed = -y_speed;
+            x_speed = -x_speed;
+        }
+
+        // let norm = Math.sqrt((x * x) + (y * y));
+
+        // let x_speed = (x / norm);
+        // let y_speed = (y / norm);
+
+
 
         this.bullets.push({ x: p.x, y: p.y, count: 0, x_speed, y_speed, name });
 

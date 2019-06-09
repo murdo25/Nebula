@@ -67,6 +67,8 @@ class Game {
         this.players = [];
         this.bullets = [];
 
+
+
         this.mouse_x = 0;
         this.mouse_y = 0;
 
@@ -96,9 +98,9 @@ class Game {
         socket.emit("move", this.player.loc);
 
         if (this.player.shoot) {
-            console.log(this.player.loc.x, this.player.loc.y, this.mouse_x, this.mouse_y);
+            // console.log(this.player.loc.x, this.player.loc.y, this.mouse_x, this.mouse_y);
             socket.emit("shoot", this.mouse_x, this.mouse_y);
-
+            
         }
 
     }
