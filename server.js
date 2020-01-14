@@ -2,6 +2,9 @@
 
 'use strict';
 
+var port = 4200
+console.log("port =", port)
+
 const Game = require("./src/server/server_game.js");
 
 // Use express to open a web server
@@ -29,14 +32,12 @@ app.post('/login', function(req, res, next) {
     res.send(false)
   }
 
-
   res.send(true);
 
 });
 
 app.post('/game', function(req, res, next) {
   console.log(req.body.username)
-
 
   if (req.body.username in connections) {
     res.send(false)
@@ -50,7 +51,7 @@ app.post('/game', function(req, res, next) {
 
 
 // -- ClIENT LISTENERS --
-server.listen(4200, '0.0.0.0'); // begin listening
+server.listen(port, '0.0.0.0'); // begin listening
 var connections = [];
 var game = new Game(connections);
 game.start();
